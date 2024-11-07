@@ -46,7 +46,7 @@ button && button.addEventListener('click', function (event) {
 
 
     const card = createCard(todo);
-    todoWrapper.appendChild(card);
+    todoWrapper.innerHTML += card;
     field.value = '';
 
     let todos = getdataFromLocalStorage();
@@ -74,5 +74,6 @@ document.addEventListener('DOMContentLoaded', function () {
         })
     })
 })
+
 
 
