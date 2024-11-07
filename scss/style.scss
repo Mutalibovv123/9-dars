@@ -25,10 +25,11 @@ body {
 }
 #form input {
     width: 80%;
-    background-color: rgb(85, 85, 85);
+    background-color: rgb(239, 172, 120);
     border-radius: 10px;
     border: none;
     padding: 10px;
+    font-size: 16px;
 
 }
 #form button {
@@ -49,5 +50,9 @@ justify-content: space-between;
     cursor: pointer;
     color: red;
 }
-
+h1 {
+    margin-bottom: 12px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: coral;
+}
 
