@@ -2,6 +2,7 @@ const form = document.querySelector('#form');
 const field = document.querySelector('#field');
 const button = document.querySelector('#button');
 const todoWrapper = document.querySelector('#todo-items');
+const clear = document.querySelector('#clear');
 
 function validate(field) {
     if (field.value.length < 4) {
@@ -60,6 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
     todos.forEach(todo => {
         let card = createCard(todo);
         todoWrapper.innerHTML += card;
+
     })
 
     let buttons = document.querySelectorAll('.delete');
@@ -69,10 +71,16 @@ document.addEventListener('DOMContentLoaded', function () {
             if (isDelete) {
                 this.parentNode.remove();
             }
-
-
         })
     })
+})
+
+clear && clear.addEventListener('click', function(event) {
+    event.preventDefault();
+    let isClear = confirm("Rostdan ham o'chirmoqchimisz?");
+    if (isClear) {
+        todoWrapper.innerHTML = ''
+    }
 })
 
 
