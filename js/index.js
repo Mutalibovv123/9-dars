@@ -3,7 +3,7 @@ const field = document.querySelector('#field');
 const button = document.querySelector('#button');
 const todoWrapper = document.querySelector('#todo-items');
 
-function validate (field) {
+function validate(field) {
     if (field.value.length < 4) {
         alert("Eng kamida 4 ta belgidan iborat bo'lsin");
         field.focus();
@@ -13,24 +13,24 @@ function validate (field) {
     return true;
 }
 
-function createCard (data) {
+function createCard(data) {
     return `     <div class="todo-item">
     <p>${data.name}</p>
-    <span>delete</span>
+    <span class = "delete">delete</span>
 </div>  
     `
 }
 
 function getdataFromLocalStorage() {
- let data = [];
- if (localStorage.getItem('todos')) {
-    data = JSON.parse(localStorage.getItem('todos'))
- }
- return data
+    let data = [];
+    if (localStorage.getItem('todos')) {
+        data = JSON.parse(localStorage.getItem('todos'))
+    }
+    return data
 }
 
 
-button && button.addEventListener('click', function(event){
+button && button.addEventListener('click', function (event) {
     event.preventDefault();
 
 
@@ -40,13 +40,13 @@ button && button.addEventListener('click', function(event){
     }
 
     const todo = {
-id : Date.now(),
-name : field.value
+        id: Date.now(),
+        name: field.value
     }
 
 
     const card = createCard(todo);
-    todoWrapper.innerHTML += card;
+    todoWrapper.appendChild(card);
     field.value = '';
 
     let todos = getdataFromLocalStorage();
@@ -54,12 +54,25 @@ name : field.value
     localStorage.setItem('todos', JSON.stringify(todos))
 })
 
-document.addEventListener('DOMContentLoaded', function(){
+document.addEventListener('DOMContentLoaded', function () {
     let todos = getdataFromLocalStorage();
 
     todos.forEach(todo => {
         let card = createCard(todo);
-        todoWrapper.appendChild(card);
-    });
+        todoWrapper.innerHTML += card;
+    })
+
+    let buttons = document.querySelectorAll('.delete');
+    buttons.length > 0 && buttons.forEach(btn => {
+        btn && btn.addEventListener('click', function (event) {
+            let isDelete = confirm('Rostdan ham ochirib yubormoqchisiz')
+            if (isDelete) {
+                this.parentNode.remove();
+            }
+
+
+        })
+    })
 })
+
 
